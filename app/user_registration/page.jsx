@@ -46,7 +46,6 @@ export default function UserRegistration() {
       console.log("response: ", response);
 
       if (response.status === 201) {
-        // User created successfully
         console.log('User created successfully');
         // Redirect or display a success message
       } else {
