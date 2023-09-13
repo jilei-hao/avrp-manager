@@ -1,6 +1,8 @@
 'use client'
 
 import { useState } from 'react';
+import styles from './page.module.css'
+import Link from 'next/link';
 
 export default function Login() {
   const GatewayURL = process.env.NEXT_PUBLIC_GATEWAY_URL;
@@ -50,9 +52,8 @@ export default function Login() {
   };
 
   return (
-    <div>
-      <h1>Login</h1>
-      <form onSubmit={handleSubmit}>
+    <div className={styles.loginContainer}>
+      <form className={styles.loginForm} onSubmit={handleSubmit}>
         <div>
           <label htmlFor="email">Email:</label>
           <input
@@ -62,10 +63,11 @@ export default function Login() {
             value={formData.email}
             onChange={handleInputChange}
             required
+            autoComplete='on'
           />
         </div>
         <div>
-          <label htmlFor="pw">Password:</label>
+          <label htmlFor="password">Password:</label>
           <input
             type="password"
             id="password"
@@ -73,12 +75,18 @@ export default function Login() {
             value={formData.password}
             onChange={handleInputChange}
             required
+            autoComplete='on'
           />
         </div>
         <div>
-          <button type="submit">Login</button>
+          <input 
+            type="submit" 
+            value="Login"
+          />
         </div>
+        <Link href="/user_registration">Create an account</Link>
       </form>
+      
     </div>
   );
 }

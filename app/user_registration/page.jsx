@@ -1,6 +1,8 @@
 'use client'
 
 import { useState } from 'react';
+import styles from './page.module.css'
+import Link from 'next/link';
 
 export default function UserRegistration() {
   const GatewayURL = process.env.NEXT_PUBLIC_GATEWAY_URL;
@@ -58,9 +60,8 @@ export default function UserRegistration() {
   };
 
   return (
-    <div>
-      <h1>New User Registration</h1>
-      <form onSubmit={handleSubmit}>
+    <div className={styles.loginContainer}>
+      <form className={styles.loginForm} onSubmit={handleSubmit}>
         <div>
           <label htmlFor="email">Email:</label>
           <input
@@ -70,10 +71,11 @@ export default function UserRegistration() {
             value={formData.email}
             onChange={handleInputChange}
             required
+            autoComplete='on'
           />
         </div>
         <div>
-          <label htmlFor="pw">Password:</label>
+          <label htmlFor="password">Password:</label>
           <input
             type="password"
             id="password"
@@ -81,6 +83,7 @@ export default function UserRegistration() {
             value={formData.password}
             onChange={handleInputChange}
             required
+            autoComplete='on'
           />
         </div>
         <div>
@@ -92,11 +95,16 @@ export default function UserRegistration() {
             value={formData.passwordConfirm}
             onChange={handleInputChange}
             required
+            autoComplete='on'
           />
         </div>
         <div>
-          <button type="submit">Create User</button>
+          <input 
+            type="submit"
+            value="Create User"
+          />
         </div>
+        <p>Already have an account? <Link href="/login">Login</Link></p>
       </form>
     </div>
   );
