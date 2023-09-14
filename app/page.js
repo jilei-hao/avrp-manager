@@ -11,9 +11,8 @@ export default function Home() {
   return (
     <React.StrictMode>
       <AuthProvider>
-        <Login />
+        <MainPage />
       </AuthProvider>
     </React.StrictMode>
-    
   )
 }
