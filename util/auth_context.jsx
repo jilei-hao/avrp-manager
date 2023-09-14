@@ -9,8 +9,8 @@ export function AuthProvider({ children }) {
 
   console.log("[AuthProvider] gatewayURL: ", gatewayURL);
 
+  // attempt login, set user and return a meesage
   const login = async (userData) => {
-
     try {
       const response = await fetch(`${gatewayURL}/login`, {
         method: 'POST',
@@ -20,26 +20,24 @@ export function AuthProvider({ children }) {
         body: JSON.stringify(userData),
       });
 
-      console.log("response: ", response);
-
-      if (response.status === 200) {
-        console.log('Logged in successfully');
-      } else {
-        console.error('Error logging in');
-      }
+      // parsing the response data
+      response.json().then((data) => {
+        const ok = response.status == 200;
+        if (ok) {
+          setUser({
+            email: userData.email,
+            token: data.userId,
+          })
+        } else
+          setUser(null);
+      })
     } catch (error) {
-      console.error('Error logging in', error);
+      setUser(null);
+      console.error(`Error connecting to the server: ${error}`);
     }
-    
-    // Implement your login logic here and set the user state
-    setUser({
-      email: userData.email,
-      token: response.token
-    });
   };
 
   const logout = () => {
-    // Implement your logout logic here and clear the user state
     setUser(null);
   };
 

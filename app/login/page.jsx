@@ -3,11 +3,13 @@
 import { useState } from 'react';
 import styles from './page.module.css'
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 import { useAuth } from '@/util/auth_context';
 
 export default function Login() {
   const GatewayURL = process.env.NEXT_PUBLIC_GATEWAY_URL;
-  const { login } = useAuth();
+  const { user, login } = useAuth();
+  const router = useRouter();
   console.log("GatewayURL: ", GatewayURL);
 
 
@@ -33,13 +35,13 @@ export default function Login() {
     console.log("handleSubmit: ", formData);
 
     // Make a POST request to your backend API to create a new user
-    const res = await login(formData);
+    await login(formData);
 
-    if (res.success) {
-      // redirect to main page
+    if (user) {
+      router.push('/main_page');
     } else {
       // display error message
-      console.error("Error logging in: ", res.message);
+      console.error(`Error logging in!`);
     }
   };
 

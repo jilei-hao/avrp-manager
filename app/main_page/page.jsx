@@ -1,7 +1,7 @@
 'use client'
 
 import { useState } from 'react';
-import styles from './page.module.css'
+import styles from './page.module.css';
 import Link from 'next/link';
 import { useAuth } from '@/util/auth_context';
 import Login from '../login/page';
