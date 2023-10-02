@@ -104,7 +104,7 @@ export default function UserRegistration() {
             value="Create User"
           />
         </div>
-        <p>Already have an account? <Link href="/login">Login</Link></p>
+        <p>Already have an account? <Link href="/">Login</Link></p>
       </form>
     </div>
   );
