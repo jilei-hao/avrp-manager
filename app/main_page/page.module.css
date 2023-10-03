@@ -1,3 +1,75 @@
+/* Add this CSS to your project's stylesheet, e.g., Main.module.css */
+
 .mainContainer {
+  padding: 20px;
+}
+
+.titleBar {
+  background-color: #ececec; /* Title bar background color */
+  color: #676767; /* Title bar text color */
+  padding: 10px;
   display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 40px;
+}
+
+.titleBar h1 {
+  margin: 0;
+}
+
+.titleBarLoginContainer {
+  display: flex;
+}
+
+.titleBarLoginItem {
+  margin-right: 10px;
+}
+
+.buttonLink {
+  background: none;
+  border: none;
+  color: #007bff; /* Link color */
+  text-decoration: underline;
+  cursor: pointer;
+  padding: 0;
+  margin: 0;
+  font-size: inherit;
+}
+
+.buttonLink:hover {
+  text-decoration: none;
+  color: #0056b3; /* Hover color */
+}
+
+.buttonLink:focus {
+  outline: none;
+}
+
+.user-actions button,
+.user-actions a {
+  background: none;
+  border: none;
+  color: #fff;
+  cursor: pointer;
+  text-decoration: underline;
+  font-size: 16px;
+  padding: 0;
+  margin: 0;
+  outline: none;
+}
+
+.user-actions button:hover,
+.user-actions a:hover {
+  text-decoration: none;
+}
+
+.bodyContainer {
+  display: flex;
+  padding: 5px;
+  background-color: #f0f0f0; /* Content background color */
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  min-height: 95vh;
 }

@@ -3,10 +3,13 @@
 import { useState } from 'react';
 import styles from './page.module.css'
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 
 export default function UserRegistration() {
   const GatewayURL = process.env.NEXT_PUBLIC_GATEWAY_URL;
   console.log("GatewayURL: ", GatewayURL);
+
+  const router = useRouter();
 
   // State to store form data
   const [formData, setFormData] = useState({
@@ -50,6 +53,7 @@ export default function UserRegistration() {
       if (response.status === 201) {
         console.log('User created successfully');
         // Redirect or display a success message
+        router.push('/');
       } else {
         // Handle errors, e.g., validation errors from the backend
         console.error('Error creating user');
