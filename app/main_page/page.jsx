@@ -6,12 +6,41 @@ import Link from 'next/link';
 import { useAuth } from '@/util/auth_context';
 import Login from '../login/page';
 import Sidebar from '@/components/sidebar/sidebar';
+import ConfigPanel from '@/components/config_panel/config_panel';
 
 export default function MainPage () {
   const { user, logout } = useAuth();
+  const [ studyConfig, setStudyConfig ] = useState([{
+      study_id: 1,
+      image_4d: '',
+      tp_start: 1,
+      tp_end: 14,
+      systolic_propagation: {
+        reference_seg: '',
+        reference_tp: 3,
+        tp_start: 1,
+        tp_end: 7
+      },
+      diastolic_propagation: {
+        reference_seg: '',
+        reference_tp: 10,
+        tp_start: 8,
+        tp_end: 14
+      },
+    }
+  ]);
+
+  const [ selectedStudy, setSelectedStudy] = useState(null);
 
   const onStudySelected = (e) => {
-    console.log("[main_page] study selected id: ", e.target.id);
+    const study_id = e.target.id;
+    console.log("[main_page] study selected id: ", study_id);
+
+    setSelectedStudy(study_id);
+  }
+
+  const onConfigSubmit = (e) => {
+    console.log("[main page: onConfigSubmit] ");
   }
 
   return (
@@ -26,6 +55,7 @@ export default function MainPage () {
       </header>
       <div className={styles.bodyContainer}>
         <Sidebar onStudySelected={ onStudySelected }/>
+        <ConfigPanel study_id={selectedStudy} config={null} onSubmit={onConfigSubmit} />
       </div>
     </div>
     ) : (

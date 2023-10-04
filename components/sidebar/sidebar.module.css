@@ -1,9 +1,18 @@
 /* components/Sidebar.module.css */
 
 .sidebar {
-  width: 250px;
+  min-width: 250px;
   background-color: #e5e5e5;
   color: #7e7e7e;
-  padding: 10px;
+  padding: 15px;
   min-height: 95vh;
+}
+
+.sidebarHeader {
+  border-bottom: 1px solid #ccc;
+  background-color: transparent;
+  color: #666666;
+  font-size: 24px;
+  margin-bottom: 10px;
+  padding-bottom: 5px;
 }

@@ -1,0 +1,98 @@
+.configForm {
+  flex: 1;
+  max-width: 800px;
+  min-width: 600px;
+  min-height: 95vh;
+  margin: 0 auto;
+  padding: 15px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: #fff;
+}
+
+/* Style for form labels */
+.configLabel {
+  display: block;
+  margin-bottom: 5px;
+}
+
+.configLabelInline {
+  display: inline-block;
+  margin-bottom: 5px;
+  width: 200px;
+}
+
+/* Style for text inputs */
+.inputText {
+  width: 60%;
+  padding: 10px;
+  margin-bottom: 5px;
+  margin-left: 10px;
+  margin-right: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.tpInput {
+  width: 80px;
+  padding: 10px;
+  margin-bottom: 5px;
+  margin-left: 10px;
+  margin-right: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+/* Style for submit button */
+.inputSubmit {
+  background-color: white;
+  color: #777777;
+  border: 1px solid #777777;
+  border-radius: 5px;
+  padding: 10px 20px;
+  cursor: pointer;
+  font-size: 20px;
+}
+
+.inputSubmit:hover {
+  background-color: #777777;
+  color: white;
+}
+
+.propagationContainer {
+  background-color: transparent;
+  border-radius: 2px;
+  border: none;
+  padding: 0px;
+  margin-top: 15px;
+  margin-bottom: 15px;
+  margin-right: 0px;
+}
+
+.propagationHeader {
+  margin-bottom: 10px;
+  border-bottom: 1px solid #ccc;
+  padding-bottom: 5px;
+  font-size: 20px;
+  color: #666666;
+}
+
+.panelHeader {
+  border-bottom: 1px solid #ccc;
+  background-color: transparent;
+  color: #666666;
+  font-size: 24px;
+  margin-bottom: 10px;
+  padding-bottom: 5px;
+}
+
+.panelLineBlock {
+  display: block;
+}
+
+
+
+/* Style for read-only data paragraphs */
+.configPlainText {
+  margin: 5px 0;
+}
