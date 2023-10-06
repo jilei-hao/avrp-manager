@@ -16,3 +16,23 @@
   margin-bottom: 10px;
   padding-bottom: 5px;
 }
+
+.createButton {
+  padding: 5px;
+  margin-left: 10px;
+  margin-right: 10px;
+  border-radius: 2px;
+  border: none;
+  background-color: transparent;
+  font-size: 20px;
+  font-weight: bolder;
+  color: #777777;
+}
+
+.createButton:hover {
+  background-color: #d5d5d5;
+}
+
+.createButton:active {
+  color: white;
+}
