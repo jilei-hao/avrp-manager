@@ -23,6 +23,7 @@ export function gw_GetCaseStudies(_token) {
 }
 
 export function gw_CreateCase(_case, _token) {
+  console.log("[gw_CreateCase] case:", _case);
   fetch (`${gatewayURL}/case_studies`, {
     method: 'POST',
     headers: {
@@ -43,7 +44,7 @@ export function gw_CreateCase(_case, _token) {
     .catch(error => {
       console.error('Fetch error:', error);
     });
-  return caseId;
+  return -1;
 }
 
 export function gw_CreateStudy(_caseId, _study) {

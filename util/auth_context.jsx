@@ -22,11 +22,12 @@ export function AuthProvider({ children }) {
 
       // parsing the response data
       response.json().then((data) => {
+        console.log("[AuthProvider] login response: ", data);
         const ok = response.status == 200;
         if (ok) {
           setUser({
             email: userData.email,
-            token: data.userId,
+            token: data.token,
           })
         } else
           setUser(null);
