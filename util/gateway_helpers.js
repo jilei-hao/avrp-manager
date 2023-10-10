@@ -23,7 +23,7 @@ export function gw_GetCaseStudies(_token) {
 }
 
 export function gw_CreateCase(_case, _token) {
-  console.log("[gw_CreateCase] case:", _case);
+  console.log("[gw_CreateCase] case:", _case, _token);
   fetch (`${gatewayURL}/case_studies`, {
     method: 'POST',
     headers: {
@@ -34,7 +34,7 @@ export function gw_CreateCase(_case, _token) {
   })
     .then(response => {
       if (!response.ok) {
-        throw new Error('Network response was not ok');
+        throw new Error('Network response was not ok. Message: ' + response.statusText);
       }
       return response.json();
     })
