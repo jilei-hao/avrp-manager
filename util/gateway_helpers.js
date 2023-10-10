@@ -24,7 +24,7 @@ export function gw_GetCaseStudies(_token) {
 
 export function gw_CreateCase(_case, _token) {
   console.log("[gw_CreateCase] case:", _case, _token);
-  fetch (`${gatewayURL}/case_studies`, {
+  fetch (`${gatewayURL}/case`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
