@@ -10,8 +10,6 @@ export default function Login() {
   const GatewayURL = process.env.NEXT_PUBLIC_GATEWAY_URL;
   const { user, login } = useAuth();
   const router = useRouter();
-  console.log("GatewayURL: ", GatewayURL);
-
 
   // State to store form data
   const [formData, setFormData] = useState({
@@ -31,8 +29,6 @@ export default function Login() {
   // Handle form submission
   const handleSubmit = async (e) => {
     e.preventDefault();
-
-    console.log("handleSubmit: ", formData);
 
     // Make a POST request to your backend API to create a new user
     await login(formData);

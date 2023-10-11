@@ -7,8 +7,6 @@ export function AuthProvider({ children }) {
 
   const gatewayURL = process.env.NEXT_PUBLIC_GATEWAY_URL;
 
-  console.log("[AuthProvider] gatewayURL: ", gatewayURL);
-
   // attempt login, set user and return a meesage
   const login = async (userData) => {
     try {

@@ -2,7 +2,7 @@
 const gatewayURL = process.env.NEXT_PUBLIC_GATEWAY_URL;
 
 
-export function gw_GetCaseStudies(_token) {
+export async function gw_GetCaseStudies(_token) {
   fetch (`${gatewayURL}/CaseStudies`, {
     method: 'GET',
     headers: {
@@ -22,7 +22,7 @@ export function gw_GetCaseStudies(_token) {
     });
 }
 
-export function gw_CreateCase(_case, _token) {
+export async function gw_CreateCase(_case, _token) {
   console.log("[gw_CreateCase] case:", _case, _token);
   fetch (`${gatewayURL}/case`, {
     method: 'POST',
@@ -47,6 +47,39 @@ export function gw_CreateCase(_case, _token) {
   return -1;
 }
 
+export async function gw_GetCaseStudyHeaders(_token) {
+  console.log("[gw_GetCaseStudyHeaders] token: ", _token);
+  try {
+    const response = await fetch(`${gatewayURL}/case_studies`, {
+      method: 'GET',
+      headers: {
+        'Authentication': `Bearer ${_token}`
+      }
+    });
+
+    if (!response.ok) {
+      throw new Error('Network response was not ok', response);
+    }
+
+    const data = await response.json();
+    console.log("[gw_GetCaseStudyHeaders] data: ", data);
+    const dataArray = Object.entries(data).map(([key, value]) => ({ 
+      caseId: key,
+      caseName: value.name,
+      mrn: value.mrn,
+      studyCount: value.study_count,
+      studies: value.studies
+    }));
+    console.log("[gw_GetCaseStudyHeaders] dataArray: ", dataArray);
+
+
+    return dataArray;
+  } catch (error) {
+    console.error('Fetch error:', error);
+  }
+}
+
 export function gw_CreateStudy(_caseId, _study) {
+  console.log("[gw_CreateStudy] caseId:", _caseId, _study);
 
 }

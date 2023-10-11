@@ -1,0 +1,28 @@
+/* Style for study items */
+.studyItemContainer {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.studyItem {
+  cursor: pointer;
+  padding: 5px;
+  padding-left: 35px;
+  background-color: transparent;
+  text-align: left;
+  color: #404040;
+  border: none;
+  border-radius: 1px;
+  transition: background-color 0.2s;
+}
+
+.studyItem:hover {
+  background-color: #c0c0c0; /* Button background color on hover */
+  color: #fff; /* Text color on hover */
+}
+
+.studyItemActive {
+  background-color: #c0c0c0;
+  color: #fff;
+}
