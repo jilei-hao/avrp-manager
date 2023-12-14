@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import styles from './config_panel.module.css'
-import ConfigForm from '../config_form/config_form';
+import styles from './component.module.css'
+import ConfigForm from '../config_form/component';
 
 export default function ConfigPanel ({ study_id, config, onSubmit }) {
   console.log("--[ConfigPanel] render");

@@ -4,10 +4,10 @@ import { useState } from 'react';
 import styles from './page.module.css';
 import { useAuth } from '@/util/auth_context';
 import Login from '../login/page';
-import Sidebar from '@/components/sidebar/sidebar';
-import ConfigPanel from '@/components/config_panel/config_panel';
+import Sidebar from '@/components/sidebar/component';
+import ConfigPanel from '@/components/config_panel/component';
 
-export default function MainPage () {
+export default function Main () {
   const { user, logout } = useAuth();
 
   const [ selectedStudy, setSelectedStudy] = useState(null);
@@ -34,7 +34,7 @@ export default function MainPage () {
         </div>
       </header>
       <div className={styles.bodyContainer}>
-        <Sidebar onStudySelected={ onStudySelected }/>
+        <Sidebar/>
         <ConfigPanel study_id={selectedStudy} config={null} onSubmit={onConfigSubmit} />
       </div>
     </div>

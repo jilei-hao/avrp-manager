@@ -19,7 +19,7 @@
 }
 
 .caseItem:hover {
-  background-color: #626262; /* Button background color on hover */
+  background-color: #aaaaaa; /* Button background color on hover */
   color: #fff; /* Text color on hover */
 }
 
@@ -55,4 +55,24 @@
 .studyItemActive {
   background-color: #c0c0c0;
   color: #fff;
+}
+
+.createStudyButton {
+  padding: 3px;
+  margin-left: 10px;
+  margin-right: 10px;
+  border-radius: 2px;
+  border: none;
+  background-color: transparent;
+  font-size: 16px;
+  font-weight: bolder;
+  color: #777777;
+}
+
+.createStudyButton:hover {
+  color: #d5d5d5;
+}
+
+.createStudyButton:active {
+  color: white;
 }

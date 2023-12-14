@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import styles from './sidebar_study_item.module.css'
+import styles from './component.module.css'
 
-export default function SidebarStudyItem ({ study_data, active }) {
+export default function SidebarStudyItem ({ study_data, active, onStudySelected }) {
   return (
     <div className={styles.studyItem}>
         <div 

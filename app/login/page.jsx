@@ -74,7 +74,12 @@ export default function Login() {
             value="Login"
           />
         </div>
-        <Link href="/user_registration">Create an account</Link>
+        <Link 
+          className={styles.registrationLink}
+          href="/user_registration"
+        >
+          Create an account
+        </Link>
       </form>
       
     </div>

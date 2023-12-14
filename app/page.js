@@ -3,7 +3,7 @@
 import Image from 'next/image'
 import styles from './page.module.css'
 import React from 'react'
-import MainPage from './main_page/page'
+import Main from './main/page'
 import { AuthProvider } from '@/util/auth_context'
 import { UserDataProvider } from '@/util/user_data_context'
 import Login from './login/page'
@@ -13,7 +13,7 @@ export default function Home() {
     <React.StrictMode>
       <AuthProvider>
         <UserDataProvider>
-          <MainPage />
+          <Main />
         </UserDataProvider>
       </AuthProvider>
     </React.StrictMode>

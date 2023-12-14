@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import styles from './config_form.module.css'
+import styles from './component.module.css'
 
 export default function ConfigForm({ study_id, existingData, onSubmit }) {
 
