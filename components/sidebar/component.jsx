@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import styles from './component.module.css'
 import SidebarCaseItem from '../sidebar_case_item/component';
 import { useUserData } from '@/util/user_data_context';
-import Case from '@/models/case'
+import Case from '@/models/case_data'
 
 export default function Sidebar () {
   const { caseStudyHeaders, createCase } = useUserData();
@@ -15,6 +15,8 @@ export default function Sidebar () {
       createCase(newCase);
     }
   }
+
+  console.log("[sidebar] caseStudyHeaders: ", caseStudyHeaders)
 
   return (
     <aside className={ styles.sidebar }>

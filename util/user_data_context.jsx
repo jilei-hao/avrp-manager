@@ -1,13 +1,10 @@
 import React, { createContext, useContext, useState, useEffect} from 'react';
 import { useAuth } from './auth_context';
-import { gw_CreateCase, gw_GetCaseStudyHeaders } from './gateway_helpers';
+import { gw_CreateCase, gw_CreateStudy, gw_GetCaseStudyHeaders } from './gateway_helpers';
 
 const UserDataContext = createContext();
 
 export function UserDataProvider({ children }) {
-  const gatewayURL = process.env.NEXT_PUBLIC_GATEWAY_URL;
-  console.log("[UserDataProvider] gatewayURL: ", gatewayURL);
-
   const { user } = useAuth();
   console.log("[UserDataProvider] active user: ", user);
 
@@ -16,13 +13,12 @@ export function UserDataProvider({ children }) {
   const [caseStudyHeaders, setCaseStudyHeaders] = useState(null);
 
   const fetchCaseStudies = async () => {
-    try {
-      const data = await gw_GetCaseStudyHeaders(user.token);
-      console.log("[UserDataProvider::UseEffect] case studies: ", data);
-      setCaseStudyHeaders(data);
-    } catch (error) {
-      console.error(`[UserDataProvider::UseEffect]Error fetching case studies: ${error}`);
-    }
+    gw_GetCaseStudyHeaders(user.token)
+      .then((data) => {
+        setCaseStudyHeaders(data);
+      }).catch (error => {
+        console.error(`Error fetching case studies: ${error}`);
+      });
   };
 
   // function for submitting config form
@@ -33,12 +29,24 @@ export function UserDataProvider({ children }) {
   // function for creating a new case
   const createCase = async (_case) => {
     console.log('[UserDataProvider::createCase] case:', _case);
-    await gw_CreateCase(_case, user.token);
-    fetchCaseStudies();
+    gw_CreateCase(_case, user.token)
+      .then((data) => {
+        fetchCaseStudies();
+      })
+      .catch(error => {
+        console.error('Error creating case:', error);
+      });
   };
 
-  const createStudy = () => {
-    console.log('[UserDataProvider]::createStudy');
+  const createStudy = async (_caseId, _studyName) => {
+    console.log('[UserDataProvider::createStudy] caseId: ', _caseId, ' studyName: ', _studyName);
+    gw_CreateStudy(_caseId, _studyName, user.token)
+      .then((data) => {
+        fetchCaseStudies();
+      })
+      .catch(error => {
+        console.error('Error creating study:', error);
+      });
   };
 
   useEffect(() => {
