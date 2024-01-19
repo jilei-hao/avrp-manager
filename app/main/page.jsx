@@ -10,19 +10,6 @@ import ConfigPanel from '@/components/config_panel/component';
 export default function Main () {
   const { user, logout } = useAuth();
 
-  const [ selectedStudy, setSelectedStudy] = useState(null);
-
-  const onStudySelected = (e) => {
-    const study_id = e.target.id;
-    console.log("[main_page] study selected id: ", study_id);
-
-    setSelectedStudy(study_id);
-  }
-
-  const onConfigSubmit = (e) => {
-    console.log("[main page: onConfigSubmit] ");
-  }
-
   return (
     user ? (
     <div className="mainContainer">
@@ -35,7 +22,7 @@ export default function Main () {
       </header>
       <div className={styles.bodyContainer}>
         <Sidebar/>
-        <ConfigPanel study_id={selectedStudy} config={null} onSubmit={onConfigSubmit} />
+        <ConfigPanel/>
       </div>
     </div>
     ) : (

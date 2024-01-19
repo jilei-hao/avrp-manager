@@ -1,6 +1,9 @@
 import React, { createContext, useContext, useState, useEffect} from 'react';
 import { useAuth } from './auth_context';
-import { gw_CreateCase, gw_CreateStudy, gw_GetCaseStudyHeaders } from './gateway_helpers';
+import { 
+  gw_CreateCase, gw_CreateStudy, gw_GetCaseStudyHeaders,
+  gw_CreateStudyConfig
+} from './gateway_helpers';
 
 const UserDataContext = createContext();
 
@@ -22,8 +25,12 @@ export function UserDataProvider({ children }) {
   };
 
   // function for submitting config form
-  const submitConfig = (e) => {
-    console.log('[UserDataProvider::submitConfig]');
+  const submitConfig = (formData) => {
+    console.log('[UserDataProvider::submitConfig]', formData);
+    gw_CreateStudyConfig(formData, user.token)
+    .then((response) => {
+      console.log('[UserDataProvider::submitConfig] response: ', response);
+    })
   }
 
   // function for creating a new case
@@ -63,8 +70,14 @@ export function UserDataProvider({ children }) {
 
   return (
     <UserDataContext.Provider 
-      value={{ caseStudyHeaders, selectedStudy, setSelectedStudy,
-        createCase, createStudy, config, submitConfig
+      value={{ 
+        caseStudyHeaders, 
+        selectedStudy, 
+        setSelectedStudy,
+        createCase, 
+        createStudy, 
+        config, 
+        submitConfig
       }}
     >
       {children}

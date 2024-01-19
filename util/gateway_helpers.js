@@ -89,3 +89,36 @@ export async function gw_CreateStudy(_caseId, _studyName, _token) {
     console.error('Fetch error:', error);
   });
 }
+
+export async function gw_CreateStudyConfig(_formData, _token) {
+  const formData = new FormData();
+  formData.append('study_id', _formData.study_id);
+  formData.append('image_4d', _formData.image_4d);
+  formData.append('tp_start', _formData.tp_start);
+  formData.append('tp_end', _formData.tp_end);
+  formData.append('reference_seg_sys', _formData.reference_seg_sys);
+  formData.append('tp_ref_sys', _formData.tp_ref_sys);
+  formData.append('tp_start_sys', _formData.tp_start_sys);
+  formData.append('tp_end_sys', _formData.tp_end_sys);
+  formData.append('reference_seg_dias', _formData.reference_seg_dias);
+  formData.append('tp_ref_dias', _formData.tp_ref_dias);
+  formData.append('tp_start_dias', _formData.tp_start_dias);
+  formData.append('tp_end_dias', _formData.tp_end_dias);
+  
+  console.log("[gw_CreateStudyConfig] formData: ", _formData);
+
+  return fetch (`${gatewayURL}/study_config`, {
+    method: 'POST',
+    headers: {
+      'Authorization': `Bearer ${_token}`
+    },
+    body: formData
+  }).then(response => {
+    if (!response.ok) {
+      throw new Error('Network response was not ok. Message: ' + response.statusText);
+    }
+    return response.json();
+  }).catch(error => {
+    console.error('Fetch error:', error);
+  });
+}
