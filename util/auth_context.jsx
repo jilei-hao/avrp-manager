@@ -24,7 +24,7 @@ export function AuthProvider({ children }) {
         const ok = response.status == 200;
         if (ok) {
           setUser({
-            email: userData.email,
+            username: userData.username,
             token: data.token,
           })
         } else

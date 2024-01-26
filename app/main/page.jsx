@@ -16,7 +16,7 @@ export default function Main () {
       <header className={styles.titleBar}>
         <h1>avrp manager</h1>
         <div className={styles.titleBarLoginContainer}>
-          <p className={styles.titleBarLoginItem}>logged in as: {user.email}</p>
+          <p className={styles.titleBarLoginItem}>logged in as: {user.username}</p>
           <button className={[styles.titleBarLoginItem, styles.buttonLink]} onClick={logout}>logout</button>
         </div>
       </header>

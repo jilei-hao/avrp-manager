@@ -1,49 +1,15 @@
 class StudyConfig {
-  constructor(_studyId) {
-    this._m_StudyId = _studyId;
-    this._m_Image4D = null;
-    this._m_SysConfig = null;
-    this._m_DiasConfig = null;
-    this._m_Submitted = false;
-  }
-
-  getStudyId() {
-    return this._m_StudyId;
-  }
-
-  setImage4D(_img4d) {
-    this._m_Image4D = _img4d;
-  }
-
-  getImage4D() {
-    return this._m_Image4D;
-  }
-
-  setSystolicConfig(_sysConfig) {
-    this._m_SysConfig = _sysConfig;
-  }
-
-  getSystolicConfig() {
-    return this._m_SysConfig;
-  }
-
-  setDiastolicConfig(_diasConfig) {
-    this._m_DiasConfig = _diasConfig;
-  }
-
-  getDiastolicConfig() {
-    return this._m_DiasConfig;
-  }
-
-  setSubmittedToTrue() {
-    this._m_Submitted = true;
-  }
-
-  setSubmittedToFalse() {
-    this._m_Submitted = false;
-  }
-
-  getSubmitted() {
-    return this._m_Submitted;
+  constructor(_config) {
+    this.main_image_id = _config.main_image_id;
+    this.tp_start = _config.tp_start;
+    this.tp_end = _config.tp_end;
+    this.sys_refseg_id = _config.sys_refseg_id;
+    this.sys_tp_start = _config.sys_tp_start;
+    this.sys_tp_end = _config.sys_tp_end;
+    this.sys_tp_ref = _config.sys_tp_ref;
+    this.dias_refseg_id = _config.dias_refseg_id;
+    this.dias_tp_start = _config.dias_tp_start;
+    this.dias_tp_end = _config.dias_tp_end;
+    this.dias_tp_ref = _config.dias_tp_ref;
   }
 };
