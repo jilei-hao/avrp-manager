@@ -14,12 +14,14 @@
 .configLabel {
   display: block;
   margin-bottom: 5px;
+  color: #666666;
 }
 
 .configLabelInline {
   display: inline-block;
   margin-bottom: 5px;
   width: 200px;
+  color: #666666;
 }
 
 /* Style for text inputs */
@@ -31,6 +33,8 @@
   margin-right: 10px;
   border: 1px solid #ccc;
   border-radius: 5px;
+  background-color: white;
+  color: #666666;
 }
 
 .tpInput {
@@ -41,6 +45,8 @@
   margin-right: 10px;
   border: 1px solid #ccc;
   border-radius: 5px;
+  background-color: white;
+  color: #666666;
 }
 
 /* Style for submit button */

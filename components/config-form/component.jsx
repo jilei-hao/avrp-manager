@@ -1,32 +1,56 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import styles from './component.module.css'
+import { useUserData } from '@/util/user_data_context';
 
-export default function ConfigForm({ study_id, existingData, onSubmit }) {
+function setNestedObjectValue(obj, path, value) {
+  const pathParts = path.split('.');
+  let current = obj;
+  for (let i = 0; i < pathParts.length - 1; i++) {
+    current = current[pathParts[i]];
+  }
+  current[pathParts[pathParts.length - 1]] = value;
+}
 
-  const [formData, setFormData] = useState( existingData || {
-      study_id: study_id,
-      image_4d: '',
-      tp_start: 1,
-      tp_end: 14,
-      systolic_propagation: {
-        reference_seg: '',
-        tp_ref: 3,
-        tp_start: 1,
-        tp_end: 7,
-      },
-      diastolic_propagation: {
-        reference_seg: '',
-        tp_ref: 10,
-        tp_start: 8,
-        tp_end: 14,
-      },
-    }
-  );
+const getBlankConfig = (_study_id) => {
+  return {
+    study_id: _study_id,
+    image_4d: '',
+    tp_start: '',
+    tp_end: '',
+    reference_seg_sys: '',
+    tp_ref_sys: '',
+    tp_start_sys: '',
+    tp_end_sys: '',
+    reference_seg_dias: '',
+    tp_ref_dias: '',
+    tp_start_dias: '',
+    tp_end_dias: ''
+  }
+};
+
+export default function ConfigForm() {
+  const { selectedStudy, submitConfig } = useUserData();
+
+  const [formData, setFormData] = useState(getBlankConfig(selectedStudy));
+
+  // reset the form whenever the selected study changes
+  useEffect(() => {
+    setFormData(prevData => (getBlankConfig(selectedStudy)))}
+    , [selectedStudy]);
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    submitConfig(formData);
+  }
 
   const handleInputChange = (e) => {
     console.log('--[ConfigForm] handleInputChange');
     console.log(`---- target.name: ${e.target.name}, target.value: ${e.target.value}`);
-
+    setFormData((prevData) => {
+      const newFormData = { ...prevData };
+      setNestedObjectValue(newFormData, e.target.name, e.target.value);
+      return newFormData;
+    });
   };
 
   const handleFileInputChange = (e) => {
@@ -39,14 +63,13 @@ export default function ConfigForm({ study_id, existingData, onSubmit }) {
       ...prevData,
       [name]: selectedFile,
     }));
-
   }
 
   return (
-    <form className={styles.configForm} onSubmit={onSubmit}>
+    <form className={styles.configForm} onSubmit={handleSubmit}>
       {/* General Config */}
       <div className={styles.panelHeader}>
-        Study Configuration (Id: {study_id})
+        Study Configuration (Id: {selectedStudy})
       </div>
       <label className={styles.configLabelInline}  htmlFor="image4d">Image 4D:</label>
       <input className={styles.inputText}
@@ -86,7 +109,7 @@ export default function ConfigForm({ study_id, existingData, onSubmit }) {
           className={styles.inputText}
           type="file"
           id="sysRefSeg"
-          name="systolic_propagation.reference_seg"
+          name="reference_seg_sys"
           onChange={handleFileInputChange}
           required
         />
@@ -96,8 +119,8 @@ export default function ConfigForm({ study_id, existingData, onSubmit }) {
             className={styles.tpInput}
             type="number"
             id="sysTPRef"
-            name="systolic_propagation.tp_ref"
-            value={formData.systolic_propagation.tp_ref}
+            name="tp_ref_sys"
+            value={formData.tp_ref_sys}
             onChange={handleInputChange}
             required
           />
@@ -108,8 +131,8 @@ export default function ConfigForm({ study_id, existingData, onSubmit }) {
             className={styles.tpInput}
             type="number"
             id="sysTPStart"
-            name="systolic_propagation.tp_start"
-            value={formData.systolic_propagation.tp_start}
+            name="tp_start_sys"
+            value={formData.tp_start_sys}
             onChange={handleInputChange}
             required
           />
@@ -118,8 +141,8 @@ export default function ConfigForm({ study_id, existingData, onSubmit }) {
             className={styles.tpInput}
             type="number"
             id="sysTPEnd"
-            name="systolic_propagation.tp_end"
-            value={formData.systolic_propagation.tp_end}
+            name="tp_end_sys"
+            value={formData.tp_end_sys}
             onChange={handleInputChange}
             required
           />
@@ -134,7 +157,7 @@ export default function ConfigForm({ study_id, existingData, onSubmit }) {
           className={styles.inputText}
           type="file"
           id="diasRefSeg"
-          name="diastolic_propagation.reference_seg"
+          name="reference_seg_dias"
           onChange={handleFileInputChange}
           required
         />
@@ -144,8 +167,8 @@ export default function ConfigForm({ study_id, existingData, onSubmit }) {
             className={styles.tpInput}
             type="number"
             id="diasTPRef"
-            name="diastolic_propagation.tp_ref"
-            value={formData.diastolic_propagation.tp_ref}
+            name="tp_ref_dias"
+            value={formData.tp_ref_dias}
             onChange={handleInputChange}
             required
           />
@@ -156,8 +179,8 @@ export default function ConfigForm({ study_id, existingData, onSubmit }) {
             className={styles.tpInput}
             type="number"
             id="diasTPStart"
-            name="diastolic_propagation.tp_start"
-            value={formData.diastolic_propagation.tp_start}
+            name="tp_start_dias"
+            value={formData.tp_start_dias}
             onChange={handleInputChange}
             required
           />
@@ -166,8 +189,8 @@ export default function ConfigForm({ study_id, existingData, onSubmit }) {
             className={styles.tpInput}
             type="number"
             id="diasTPEnd"
-            name="diastolic_propagation.tp_end"
-            value={formData.diastolic_propagation.tp_end}
+            name="tp_end_dias"
+            value={formData.tp_end_dias}
             onChange={handleInputChange}
             required
           />

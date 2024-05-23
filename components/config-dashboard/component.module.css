@@ -1,0 +1,25 @@
+.configDashboard {
+  flex: 1;
+  max-width: 800px;
+  min-width: 600px;
+  min-height: 95vh;
+  margin: 0 auto;
+  padding: 15px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: #fff;
+}
+
+/* Style for form labels */
+.configLabel {
+  display: block;
+  margin-bottom: 5px;
+  color: #666666;
+}
+
+.configLabelInline {
+  display: inline-block;
+  margin-bottom: 5px;
+  width: 200px;
+  color: #666666;
+}

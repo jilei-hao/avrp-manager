@@ -7,13 +7,12 @@ import { useRouter } from 'next/navigation';
 
 export default function UserRegistration() {
   const GatewayURL = process.env.NEXT_PUBLIC_GATEWAY_URL;
-  console.log("GatewayURL: ", GatewayURL);
 
   const router = useRouter();
 
   // State to store form data
   const [formData, setFormData] = useState({
-    email: '',
+    username: '',
     password: '',
     passwordConfirm: ''
   });
@@ -67,12 +66,12 @@ export default function UserRegistration() {
     <div className={styles.loginContainer}>
       <form className={styles.loginForm} onSubmit={handleSubmit}>
         <div>
-          <label htmlFor="email">Email:</label>
+          <label htmlFor="username">Username:</label>
           <input
-            type="email"
-            id="email"
-            name="email"
-            value={formData.email}
+            type="text"
+            id="username"
+            name="username"
+            value={formData.username}
             onChange={handleInputChange}
             required
             autoComplete='on'
