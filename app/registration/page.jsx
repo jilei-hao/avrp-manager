@@ -7,7 +7,6 @@ import { useRouter } from 'next/navigation';
 
 export default function UserRegistration() {
   const GatewayURL = process.env.NEXT_PUBLIC_GATEWAY_URL;
-  console.log("GatewayURL: ", GatewayURL);
 
   const router = useRouter();
 

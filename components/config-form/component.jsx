@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import styles from './component.module.css'
 import { useUserData } from '@/util/user_data_context';
 
@@ -11,24 +11,32 @@ function setNestedObjectValue(obj, path, value) {
   current[pathParts[pathParts.length - 1]] = value;
 }
 
+const getBlankConfig = (_study_id) => {
+  return {
+    study_id: _study_id,
+    image_4d: '',
+    tp_start: '',
+    tp_end: '',
+    reference_seg_sys: '',
+    tp_ref_sys: '',
+    tp_start_sys: '',
+    tp_end_sys: '',
+    reference_seg_dias: '',
+    tp_ref_dias: '',
+    tp_start_dias: '',
+    tp_end_dias: ''
+  }
+};
+
 export default function ConfigForm() {
   const { selectedStudy, submitConfig } = useUserData();
 
-  const [formData, setFormData] = useState({
-      study_id: selectedStudy,
-      image_4d: '',
-      tp_start: '',
-      tp_end: '',
-      reference_seg_sys: '',
-      tp_ref_sys: '',
-      tp_start_sys: '',
-      tp_end_sys: '',
-      reference_seg_dias: '',
-      tp_ref_dias: '',
-      tp_start_dias: '',
-      tp_end_dias: ''
-    }
-  );
+  const [formData, setFormData] = useState(getBlankConfig(selectedStudy));
+
+  // reset the form whenever the selected study changes
+  useEffect(() => {
+    setFormData(prevData => (getBlankConfig(selectedStudy)))}
+    , [selectedStudy]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
